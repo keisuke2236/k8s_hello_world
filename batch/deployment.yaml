@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: batch
+spec:
+  completions: 3
+  parallelism: 2
+  backoffLimit: 10
+  template:
+    spec:
+      containers:
+      - name: sleep-container
+        image: busybox
+        command: ["/bin/sh", "-c", "echo @rorensu2236"]
+      restartPolicy: Never

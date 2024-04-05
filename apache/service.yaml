@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: osd
+spec:
+  type: ClusterIP
+  ports:
+    - name: "http"
+      port: 80
+      targetPort: 80
+  selector:
+    app: apache
+
+# ClusterIP: Serviceをクラスター内部からのみアクセス可能にします。これがデフォルトのタイプです。
+# NodePort: クラスター内の全てのノードの特定のポートを通じてServiceにアクセスできるようにします。そのポートはクラスター外部からアクセス可能です。
+# LoadBalancer: クラウドプロバイダーのロードバランサーを使用してServiceにアクセスします。NodePortとClusterIPのServiceも自動的に作成され、ロードバランサーのリクエストを適切なノードに転送します。
+# ExternalName: Serviceをspec.externalNameフィールドに指定したCNAMEレコードにマップします。このタイプはデータセンター内のServiceやクラスター外部のServiceにアクセスする際に使用します。
